@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 part 'bsq_state.dart';
 
 Color darken(Color color, [double amount = .1]) {
+//amount = 0.0;
   assert(amount >= 0 && amount <= 1);
 
   final hsl = HSLColor.fromColor(color);
@@ -84,7 +85,7 @@ class BsqCubit extends Cubit<BsqState> {
             matrix[i][j - 1],
             matrix[i - 1][j - 1],
           );
-          await Future.delayed(const Duration(milliseconds: 5));
+          await Future.delayed(const Duration(microseconds:1));
           sendWidget(matrix);
         }
       }
@@ -109,15 +110,16 @@ class BsqCubit extends Cubit<BsqState> {
     for (int i = 0; i < matrix.length; i++) {
       for (int j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j] == 0) {
-          //  print('0');
+          //    print('0');
         } else if (i <= maxnumx &&
             j <= maxnumy &&
             i > (maxnumx - bignum) &&
             j > (maxnumy - bignum))
           matrix[i][j] = -1; //   print('X');
-        else
-          //  print(' ');
-          await Future.delayed(const Duration(milliseconds: 5));
+        else {
+          //print(' ');
+        }
+          await Future.delayed(const Duration(microseconds:1));
         sendWidget(matrix);
       }
     }
